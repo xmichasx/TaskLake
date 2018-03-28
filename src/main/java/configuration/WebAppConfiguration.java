@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+// TODO review: niepotrzebne importy
+// TODO review: integracja Jtwig dla Spring Boot: http://jtwig.org/documentation/reference/web/spring-boot
 @Configuration
 public class WebAppConfiguration {
     @Bean
@@ -15,6 +17,7 @@ public class WebAppConfiguration {
         jtwigViewResolver.setPrefix("classpath:views/");
         jtwigViewResolver.setSuffix(".twig");
         return jtwigViewResolver;
+        // TODO review: śmieci
 //        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 //        resolver.setPrefix("/Views/");
 //        resolver.setSuffix(".jsp");

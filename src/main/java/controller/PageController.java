@@ -16,9 +16,11 @@ import repository.TaskRepository;
 import java.util.List;
 import java.util.Optional;
 
+// TODO review: niepotrzebny komentarz
 @Controller // aplikacja będzie wiedziała że nasza klasa obsługuje żądania http
 public class PageController {
 
+    // TODO review: elementy składowe klasy (pola i metody) powinny posiadać kwantyfikator dostępu
     @Autowired
     DataUser dataUser;
 
@@ -27,12 +29,14 @@ public class PageController {
 
     User userG = new User();
 
+    // TODO review: śmieci
     //DataTask dataTask = new DataTaskImpl()
     //boolean zalogowany = false;
    // boolean admin = true;
     //boolean user = false;
 
     @RequestMapping(value="/", method = RequestMethod.GET)
+    // TODO review: niepotrzebny komentarz
     //@ResponseBody // mówi że metoda zwróci ciało. to co zostanie zwrócone zostanie przesłąne do przeglądarki
     public ModelAndView index(Model model) {
         if(!userG.isLoggedIn()){
@@ -47,10 +51,13 @@ public class PageController {
 
     }
 
+    // TODO review: konwencja nazewnicza - używanie polskich nazw nie jest dobrą praktyką,
+    // TODO review: a jeśli już decydujemy się na polskie nazwy to powinniśmy trzymać się tej zasady w kontekście całej aplikacji
     @RequestMapping(value="/", method = RequestMethod.POST)
     public ModelAndView indexObsluga(User user) {
 
         System.out.println(user.getLogin());
+        // TODO review: wyswietlanie hasla w konsoli nie jest dobrym pomyslem
         System.out.println(user.getPassword());
 
         userG=dataUser.logIn(user.getLogin(),user.getPassword());
@@ -60,6 +67,7 @@ public class PageController {
         }
         else{
             return new ModelAndView("redirect:/ListaUser");
+            // TODO review: śmieci
 //            {
 
 //            if(userG.isAdmin()){
@@ -80,13 +88,16 @@ public class PageController {
 
             return new ModelAndView("redirect:/");
         }
+        // TODO review: 'else if' jest tutaj nadmiarowe jeśli w poprzednim 'if' użyliśmy 'return'
         else if(!userG.isAdmin()){
+            // TODO review: większość bloku kodu w 'else if' i 'else' jest powtórzona, może
             List<Task> listOfTask=null;
             try{
-
+                // TODO niepotrzebne rzutowanie
                 listOfTask= (List<Task>)taskRepository.findByUser(userG.getLogin());
             }
             catch(Exception ex){
+                // TODO review: to nie jest dobra metoda na obsługę wyjątków
                 System.out.println("Error "+ex.toString());
             }
 
@@ -127,6 +138,7 @@ public class PageController {
         else{
 
             Optional<Task> taskOptional = taskRepository.findById(taskId);
+            // TODO review: w przypadku klasy Optional, przed wywołaniem metody 'get()' warto wywołać metodę 'isPresent()'
             Task task = taskOptional.get();
             String status="";
             model.addAttribute("task",  task);
@@ -204,6 +216,7 @@ public class PageController {
         }
 
     }
+
     @RequestMapping(value="logout")
     public ModelAndView logOut() {
         if(userG.isLoggedIn()){
@@ -232,6 +245,7 @@ public class PageController {
 //
 //    }
 
+    // TODO review: ???
     @RequestMapping("/hello")
     @ResponseBody
     public String pageTwo() {

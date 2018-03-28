@@ -8,7 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+// TODO review: niepotrzebne importy
+// TODO review: niepotrzebne komentarze
 @EnableAutoConfiguration // aplikacja sama się skonfiguruje, załaduje potrzebne moduły itp. w zaleznosci co dodaliśmy w pom.xml
 @ComponentScan({"controller","configuration","repository"}) // skanuje inne komponenty znajdujace sie w tym samym pakiecie ( w tym
                                                 //przypadku dodalismy do skanowania dwa inne pakiety

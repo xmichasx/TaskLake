@@ -25,6 +25,7 @@ public class DataUserImpl implements DataUser {
     public User logIn(String login, String password) {
 
         for(User i : userList){
+            // TODO review: warunek można sprawdzić jednym if'em
             if(i.getLogin().equals(login)){
                 if(i.getPassword().equals(password)){
                     i.setLoggedIn(true);

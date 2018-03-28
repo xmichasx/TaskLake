@@ -3,6 +3,7 @@ package model;
 public class User {
     int userId;
     private String login="";
+    // TODO review: https://docs.oracle.com/javase/6/docs/technotes/guides/security/crypto/CryptoSpec.html#PBEEx
     private String password="";
     private boolean admin = false;
     private boolean loggedIn= false;
