@@ -14,6 +14,5 @@ public class WebAppConfiguration  {
         jtwigViewResolver.setSuffix(".twig");
         return jtwigViewResolver;
     }
-
-
 }
+
