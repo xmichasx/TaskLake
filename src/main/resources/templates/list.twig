@@ -14,9 +14,12 @@
 <div style="margin: 20px; float: right">
     <button type="button" class="btn btn-primary" onClick="location.href='/logout'" >Wyloguj</button>
 </div>
+
+{% if user.admin %}
 <div style="margin: 20px">
     <button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='/add'" >Dodaj zadanie</button>
 </div>
+{% endif %}
 
 <table class="table table-striped">
     <thead>
@@ -36,12 +39,14 @@
             <td>{{ task.status }}</td>
             <td>{{ task.description }}</td>
             <td>{{ task.user }}</td>
+            {% if user.admin %}
             <td>
                 <form method="GET" action="/edit">
                     <input type="hidden" name="taskId" value="{{task.taskId }}" />
                     <input type="submit" value="Szczegóły">
                 </form>
             </td>
+            {% endif %}
 
 
 

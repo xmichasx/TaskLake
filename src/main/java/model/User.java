@@ -1,7 +1,7 @@
 package model;
 
 public class User {
-    int userId;
+    private int userId;
     private String login="";
     private String password="";
     private boolean admin = false;

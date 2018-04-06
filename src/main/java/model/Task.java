@@ -7,12 +7,11 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long taskId;
-
-    String name;
-    String status;
-    String description;
-    String user;
+    private Long taskId;
+    private String name;
+    private String status;
+    private String description;
+    private String user;
 
     public Long getTaskId() {
         return taskId;
