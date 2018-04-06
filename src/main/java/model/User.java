@@ -3,7 +3,7 @@ package model;
 public class User {
     private int userId;
     private String login="";
-    private String password="";
+    private char[] password;
     private boolean admin = false;
     private boolean loggedIn= false;
 
@@ -23,11 +23,11 @@ public class User {
         this.login = login;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
     }
 
@@ -50,7 +50,7 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String login, String password, boolean admin) {
+    public User(int userId, String login, char[] password, boolean admin) {
         this.userId=userId;
         this.login = login;
         this.password = password;

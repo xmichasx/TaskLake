@@ -4,23 +4,25 @@ import model.User;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 @Repository
 public class DataUserImpl implements DataUser {
     private List<User> userList = new ArrayList<>();
     public DataUserImpl() {
-        User user1= new User(1,"user1","haslo1",false);
+        User user1= new User(1,"user1","haslo1".toCharArray(),false);
         userList.add(user1);
-        User user2= new User(2,"user2","haslo2",false);
+        User user2= new User(2,"user2","haslo2".toCharArray(),false);
         userList.add(user2);
-        User admin= new User(3,"admin1","haslo1",true);
+        User admin= new User(3,"admin1","haslo1".toCharArray(),true);
         userList.add(admin);
     }
     @Override
-    public User logIn(String login, String password) {
+    public User logIn(String login, char[] password) {
         for(User i : userList){
             if(i.getLogin().equals(login)){
-                if(i.getPassword().equals(password)){
+
+                if( Arrays.equals(i.getPassword(),password)){
                     i.setLoggedIn(true);
                     return i;
                 }
