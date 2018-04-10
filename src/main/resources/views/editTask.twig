@@ -6,60 +6,51 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
-
     <title>Zmiana statusu zadania</title>
 </head>
 <body>
 
-
-<div style="margin: 20px; float: right">
-    <button type="button" class="btn btn-primary" onClick="location.href='/logout'" >Wyloguj</button>
-</div>
-<div style="margin: 20px">
-    <button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='/userList'" >Wróć</button>
-</div>
-
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nazwa</th>
-        <th scope="col">Status</th>
-        <th scope="col">Opis</th>
-        <th scope="col">User</th>
-    </tr>
-    </thead>
-    <tbody>
+    <div style="margin: 20px; float: right">
+        <button type="button" class="btn btn-primary" onClick="location.href='/logout'" >Wyloguj</button>
+    </div>
+    <div style="margin: 20px">
+        <button type="button" class="btn btn-primary btn-lg btn-block" onClick="location.href='/userList'" >Wróć</button>
+    </div>
+    {% if loggedIn.admin %}
+    <table class="table table-striped">
+        <thead>
         <tr>
-            <form method="POST" action="/update">
-            <th scope="row">1</th>
-            <td>{{ task.name }}</td>
-            <td>
-                <select name="status">
-                    <option>W trakcie wykonani</option>
-                    <option>Wykonanie wstrzymane</option>
-                    <option>Wykonao</option>
-                </select>
-
-            </td>
-            <td>{{ task.description }}</td>
-            <td>{{ task.user }}</td>
-            <td>
-
-
-
-
-                    <input type="hidden" name="taskId" value="{{task.taskId }}" />
-                    <input type="submit" value="Zaktualizuj">
-
-            </td>
-            </form>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Status</th>
+            <th scope="col">Opis</th>
+            <th scope="col">User</th>
         </tr>
-    </tbody>
-</table>
-
-
-
-
+        </thead>
+        <tbody>
+            <tr>
+                <form method="POST" action="/update">
+                <th scope="row">1</th>
+                <td>{{ task.name }}</td>
+                <td>
+                    <select name="status">
+                        <option>W trakcie wykonani</option>
+                        <option>Wykonanie wstrzymane</option>
+                        <option>Wykonao</option>
+                    </select>
+                </td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.user }}</td>
+                <td>
+                        <input type="hidden" name="taskId" value="{{task.taskId }}" />
+                        <input type="submit" value="Zaktualizuj">
+                </td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+    {% else %}
+        <div style="width: 200px; height: 100px; margin-left: auto; margin-right: auto"> <h1>Brak uprawnień </h1></div>
+    {% endif %}
 </body>
 </html>
