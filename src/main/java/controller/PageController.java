@@ -28,6 +28,7 @@ public class PageController {
             model.addAttribute("user", userG);
             return new ModelAndView("index");
         }
+        // TODO review: niepotrzebny 'else' jeśli w 'if' uzywamy 'return' (dotyczy całej tej klasy)
         else{
             return new ModelAndView("redirect:/userList");
         }
@@ -42,6 +43,7 @@ public class PageController {
             return new ModelAndView("redirect:/userList");
         }
     }
+    // TODO review: brakuje określenia metody HTTP
     @RequestMapping("userList")
     public ModelAndView userList(Model model) {
         if(null==userG || !userG.isLoggedIn()){
@@ -73,10 +75,12 @@ public class PageController {
     @RequestMapping(value="edit", method = RequestMethod.GET)
     public ModelAndView editStatus(@ModelAttribute("taskId") long taskId, Model model ) {
         if(dataUser.doAdmin(userG)){
+            // TODO review: użytkownik nie powinien zostać wylogowany w takiej sytuacji, raczej powinien zobaczyć informacje, że nie ma odpowiednich uprawnień (dotyczy wszystkich takich miejsc w tej klasie)
             return new ModelAndView("redirect:/logout");
         }
         else{
             Optional<Task> taskOptional = taskRepository.findById(taskId);
+            // TODO review: tutaj ładnie można zastosować metodę 'orElse' z klasy Optional
             Task task=null;
             if(taskOptional.isPresent()){
                 task = taskOptional.get();

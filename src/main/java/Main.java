@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableJpaRepositories("repository")
 @EnableTransactionManagement
 @EntityScan(basePackages="model")
+// TODO review: można się pokusić o zmianę nazwy tej klasy, dobrą prakytką jest również stworzenie pakietu dla źródeł (np. com.xmichasx.tasklake)
 public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);

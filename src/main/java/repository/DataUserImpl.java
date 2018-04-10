@@ -39,6 +39,8 @@ public class DataUserImpl implements DataUser {
     public List<User> listOfuser() {
         return userList;
     }
+
+    // TODO review: myląca nazwa - jeśli użytkownik nie jest jest zalogowany, lub nie ma praw admina, zwracana jest wartość true
     @Override
     public boolean doAdmin(User user) {
         if(null==user || !user.isLoggedIn()||!user.isAdmin()){

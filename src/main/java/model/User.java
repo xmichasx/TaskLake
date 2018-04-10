@@ -2,6 +2,7 @@ package model;
 
 public class User {
     private int userId;
+    // TODO review: po co inicjalizacja 'login' w tym miejscu?
     private String login="";
     private char[] password;
     private boolean admin = false;
