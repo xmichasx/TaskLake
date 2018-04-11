@@ -68,10 +68,7 @@ public class PageController {
             return new ModelAndView("editTask");
         }
         Optional<Task> taskOptional = taskRepository.findById(taskId);
-        Task task = null;
-        if (taskOptional.isPresent()) {
-            task = taskOptional.get();
-        }
+        Task task =taskOptional.orElse(null) ;
         String status = "";
         model.addAttribute("task", task);
         model.addAttribute("status", status);
@@ -83,10 +80,7 @@ public class PageController {
             return new ModelAndView("redirect:/userList");
         }
         Optional<Task> taskOptional = taskRepository.findById(taskId);
-        Task task = null;
-        if (taskOptional.isPresent()) {
-            task = taskOptional.get();
-        }
+        Task task =taskOptional.orElse(null) ;
         task.setStatus(status);
         taskRepository.save(task);
         return new ModelAndView("redirect:/userList");
